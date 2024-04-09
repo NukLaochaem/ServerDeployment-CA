@@ -10,19 +10,20 @@ The app is hosted on Cyclic.sh. Access it at https://blue-cute-sturgeon.cyclic.a
 
 To run this application locally, you'll need to set up a .env file with the following configuration:
 
-PORT=3000
-DB_HOST=my-database-host
-DB_USER=my-database-user
-DB_PASSWORD=my-database-password
+> CYCLIC_URL=database-host
+> CYCLIC_DB=database-user
+> CYCLIC_BUCKET_NAME=database-bucket_name
+> CYCLIC_APP_ID=database-app-id
+
 
 ## App allows Admin users to create, read, update, and delete participant records. It provides various endpoints for managing participant data, including:
 
 - GET /participants: Retrieve a list of all participants
 - POST /participants: Add a new participant
 - GET /participants/:email: Retrieve details of a specific participant by email
-- GET /participants/work:email: Retrieve work details of a specific participant by email
-- GET /participants/home:email: Retrieve home details of a specific participant by email
-- GET /participants/details/: dDeleted Retrieve all deleted participants
+- GET /participants/work/email: Retrieve work details of a specific participant by email
+- GET /participants/home/email: Retrieve home details of a specific participant by email
+- GET /participants/details/: Deleted Retrieve all deleted participants
 - PUT /participants/:email: Update details of a specific participant by email
 - DELETE /participants/:email: Delete a participant by email
 
