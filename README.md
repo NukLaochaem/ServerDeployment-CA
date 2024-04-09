@@ -10,7 +10,7 @@ The app is hosted on Cyclic.sh. Access it at https://blue-cute-sturgeon.cyclic.a
 
 To run this application locally, you'll need to set up a .env file with the following configuration:
 
-* CYCLIC_URL=database-host
+* CYCLIC_URL=database-url
 * CYCLIC_DB=database-user
 * CYCLIC_BUCKET_NAME=database-bucket_name
 * CYCLIC_APP_ID=database-app-id
