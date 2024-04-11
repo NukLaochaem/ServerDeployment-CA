@@ -1,6 +1,5 @@
 var express = require("express");
 var router = express.Router();
-const adminAuth = require("../middleware/authMiddleware");
 
 const CyclicDB = require("@cyclic.sh/dynamodb");
 const db = CyclicDB(process.env.CYCLIC_DB);
@@ -20,7 +19,7 @@ router.get("/", async function (req, res, next) {
 });
 
 //adding the provided participant’s data to the database. Keep in mind the Participant record use case mentioned earlier.
-router.post("/add", adminAuth, async function (req, res, next) {
+router.post("/add", async function (req, res, next) {
   const { email, firstName, lastName, dob, active, work, home } = req.body;
 
   if (
@@ -63,7 +62,6 @@ router.post("/add", adminAuth, async function (req, res, next) {
   }
 });
 
-// returning the personal details of all active participants (including first name and last name).
 router.get("/details", async function (req, res, next) {
   try {
     const allParticipantsResponse = await participants.list();
@@ -176,14 +174,13 @@ router.get("/home/:email", async function (req, res, next) {
       });
     }
   } catch (error) {
-    // Handle errors and send appropriate JSON response
     console.error("Error retrieving participant home details:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
 // which ‘deletes’ the participant of the provided email from the database.
-router.delete("/:email", adminAuth, async function (req, res, next) {
+router.delete("/:email", async function (req, res, next) {
   const email = req.params.email;
 
   try {
@@ -202,7 +199,7 @@ router.delete("/:email", adminAuth, async function (req, res, next) {
 });
 
 //which updates the participant of the provided email from the database. The request should have the exact same format as for /participants/add POST request.
-router.put("/:email", adminAuth, async function (req, res, next) {
+router.put("/:email", async function (req, res, next) {
   const email = req.params.email;
   const { firstName, lastName, dob, active, work, home } = req.body;
 
